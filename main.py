@@ -1,3 +1,14 @@
+import numbers as w
+
+
+def str_to_well(self_well, other_well):
+    w1 = self_well()
+    w2 = other_well()
+    self_well = w.Number()
+    other_well = w.Number()
+    return self_well, other_well
+
+
 class Student:
     def __init__(self, fio, pol, age, tel, mail, well, est=False):
         self.fio = fio
@@ -15,6 +26,22 @@ class Student:
         return f"""Студент {self.fio} {self.pol} {self.age} {self.tel} {self.mail} курс: {self.well}, оценки: 
 {'имеется' if self.est else 'не имеется'}"""
 
+    def __lt__(self, other):  # <
+        return self.well < other.well
 
-corokin = Student("Сорокин Д.М.", "м", "17", "89379849855", "corolin34@mail.ru", "3")
-print(corokin)
+    def __eq__(self, other):  # ==
+        return self.well == other.well
+
+    def __le__(self, other):  # <=
+        if self.__eq__(other):
+            return True
+        if self.__lt__(other):
+            return True
+        return False
+
+
+corokin = Student("Сорокин Д.М.", "м", "17", "89379849855", "corolin34@mail.ru", "2")
+doroshenova = Student("Дорошенова М.Л.", "ж", "16", "89279822855", "sorosh788@mail.ru", "3")
+print(corokin < doroshenova)
+print(corokin == doroshenova)
+print(corokin >= doroshenova)
