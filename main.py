@@ -39,9 +39,33 @@ class Student:
             return True
         return False
 
+class Groups:
+    def __init__(self, title, tel=None, students=None):
+        self.title = title
+        if students is None:
+            students = list()
+        self.students = students
+        self.tel = tel
+
+    def append(self, std):
+        self.students.append(std)
+
+    def __str__(self):
+        return f"Группы: {self.title}, телефон: {self.tel}, кол-во студентов: {len(self.students)}"
+    def print_employess(self):
+        for std in self.students:
+            print(std)
+    def print_students_est(self, est=True):
+        for std in self.students:
+            if std.est == est:
+                print(std)
 
 corokin = Student("Сорокин Д.М.", "м", "17", "89379849855", "corolin34@mail.ru", "2")
-doroshenova = Student("Дорошенова М.Л.", "ж", "16", "89279822855", "sorosh788@mail.ru", "3")
+doroshenova = Student("Дорошенова М.Л.", "ж", "16", "89279822855", "sorosh788@mail.ru", "3", True)
 print(corokin < doroshenova)
 print(corokin == doroshenova)
 print(corokin >= doroshenova)
+
+arhiv = Groups("Архив", students=[corokin])
+arhiv.append(doroshenova)
+arhiv.print_students_est(False)
